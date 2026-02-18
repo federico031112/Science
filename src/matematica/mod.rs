@@ -4,7 +4,7 @@ pub fn equazione_primo_grado(a: f64, b: f64) -> f64{
     let x: f64 = (-b)/a;
     x
 }
-
+//enum per il ritorno di una equazione di secondo grado
 pub enum SoluzioneEquazioneSecondoGrado{
     DueReali(f64, f64),
     UnaReale(f64),
@@ -142,6 +142,10 @@ impl Coseno{
     pub fn print(&self) -> String{
         format!("{}cos({}(x+({}))",self.ampiezza.to_string(),self.frequenza_angolare.to_string(),self.fase.to_string())
     }
+
+    pub fn derivata(&self) -> Seno{
+        Seno::new(-(self.ampiezza*self.frequenza_angolare), self.frequenza_angolare, self.fase)
+    }
 }
 
 //funzione per convertire i gradi in radianti
@@ -153,4 +157,35 @@ pub fn converti_gradi_radianti(gradi: f64) -> f64{
 pub fn converti_radianti_gradi(radianti: f64) -> f64{
     180.0*radianti/3.14
 }
+
+pub struct Matrice{
+    righe: usize,
+    colonne: usize,
+    data: Vec<Vec<f64>>
+}
+
+impl Matrice{
+    pub fn new(&self, righe: usize, colonne: usize, data: Vec<Vec<f64>>) -> Option<Matrice>{
+        if data.len() == righe {
+            let mut count = 0;
+            for i in 0..righe {
+                if data[i].len() == colonne{
+                    count+=1;
+                }else{
+                    break;
+                }
+            }
+            if count == righe-1 {
+                Some(Self { righe, colonne, data })
+            }else{
+                None
+            }
+        }else{
+            None
+        }
+        
+    }
+}
+
+
 
