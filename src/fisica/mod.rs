@@ -1,8 +1,8 @@
 
 
 pub struct Vettore{
-    x: f64,
-    y: f64,
+    pub x: f64,
+    pub y: f64,
 }
 //descrizione di un vettore
 impl Vettore {
@@ -56,9 +56,9 @@ pub fn velocità_media(s1: &Vettore,s2 :&Vettore, t1: f64, t2: f64) -> Vettore {
 }
 //definizione vettore 3D
 pub struct Vettore3D {
-    x: f64,
-    y: f64,
-    z: f64
+    pub x: f64,
+    pub y: f64,
+    pub z: f64
 }
 //funzioni relative al vettore 3D
 impl Vettore3D {
