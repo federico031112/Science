@@ -4,6 +4,7 @@ ed infine creare la struct per eseguire le operazioni il codice seguente mostra 
 
 -----------------------------------------------------
 -----------------------------------------------------
+```rust
 let mut matrice: Vec<Vec<f64>> = Vec::new();
     let riga1 = vec![1.0,2.0,3.0];
     let riga2 = vec![5.0,9.0,8.0];
@@ -21,5 +22,6 @@ let mut matrice: Vec<Vec<f64>> = Vec::new();
     }else{
         println!("errore");
     }
+```
 -----------------------------------------------------
 -----------------------------------------------------
