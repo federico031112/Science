@@ -157,15 +157,15 @@ pub fn converti_gradi_radianti(gradi: f64) -> f64{
 pub fn converti_radianti_gradi(radianti: f64) -> f64{
     180.0*radianti/3.14
 }
-
+//definizione di matrice a n e m dimensioni
 pub struct Matrice{
-    righe: usize,
-    colonne: usize,
-    data: Vec<Vec<f64>>
+    pub righe: usize,
+    pub colonne: usize,
+    pub data: Vec<Vec<f64>>
 }
-
+//funzioni legate alla matrice
 impl Matrice{
-    pub fn new(&self, righe: usize, colonne: usize, data: Vec<Vec<f64>>) -> Option<Matrice>{
+    pub fn new( righe: usize, colonne: usize, data: Vec<Vec<f64>>) -> Option<Self>{
         if data.len() == righe {
             let mut count = 0;
             for i in 0..righe {
@@ -175,7 +175,7 @@ impl Matrice{
                     break;
                 }
             }
-            if count == righe-1 {
+            if count == righe {
                 Some(Self { righe, colonne, data })
             }else{
                 None

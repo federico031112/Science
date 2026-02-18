@@ -28,7 +28,7 @@ impl Vettore {
     pub fn prodotto_scalare_tra_vettori(&self,vec: Vettore,angolo: f64) -> f64 {
         self.modulo()*vec.modulo()*angolo
     }
-
+    //funzione per il calcolo tra prodotto vettoriale tra vettori di due dimensioni
     pub fn prodotto_vettoriale_tra_vettori(&self, vec: &Vettore) -> Vettore3D {
         let z: f64 = (self.x*vec.y)-(self.y*vec.x);
         Vettore3D { x: 0.0, y: 0.0, z }
@@ -54,13 +54,13 @@ pub fn velocità_media(s1: &Vettore,s2 :&Vettore, t1: f64, t2: f64) -> Vettore {
     let v = Vettore::new((s2.x-s1.x)/(t2-t1),(s2.y-s1.y)/(t2-t1));
     v
 }
-
+//definizione vettore 3D
 pub struct Vettore3D {
     x: f64,
     y: f64,
     z: f64
 }
-
+//funzioni relative al vettore 3D
 impl Vettore3D {
     pub fn new(&self,x: f64,y: f64,z: f64) -> Vettore3D{
         Self { x, y, z }
