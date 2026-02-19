@@ -1,21 +1,25 @@
 //definizione della strcut quadrato
 pub struct Quadrato{
-    lato: Option<f64>,
-    diagonale: Option<f64>,
-    area: Oprion<f64>
+    pub lato: f64,
+    pub diagonale: f64,
+    pub area: f64
 }
 //definizione dei metodi relativi alla struct quadrato
 impl Quadrato{
-    pub fn new(l: Option<f64>,d: Option<f64>,a: Option<f64>) -> Self{
+    pub fn new(l: f64,d: f64,a: f64) -> Self{
         Self {lato: l, diagonale: d, area: a}
     }
 
-    pub fn calcola_area(&self){
+    pub fn calcola_area(&mut self){
         self.area = self.lato * self.lato;
     }
 
-    pub fn calcola_diagonale(&self){
+    pub fn calcola_diagonale(&mut self){
         self.diagonale = (self.lato*self.lato + self.lato*self.lato).sqrt();
+    }
+
+    pub fn calcola_lato_da_area(&mut self){
+        self.lato = self.area.sqrt();
     }
 }
 //definizione della struct rettangolo

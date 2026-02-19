@@ -46,3 +46,30 @@ fn main() {
 ```
 -------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------
+
+esempio di utilizzo di una forma geometrica con la libreria geometria, il processo è molto intuitivo e si può applicarea a qualsiasi forma
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+```rust
+fn main() {
+    //inizializzo un quadrato: i valori sconosciuti li inizializzo con 0.0
+    let mut q = Quadrato::new(1.0, 0.0, 0.0);
+    //calcolo dell'area del quadrato
+    q.calcola_area();
+    //calcolo della diagonale del quadrato
+    q.calcola_diagonale();
+    //stampa dei risultati
+    println!("area: {}m2 diagonale: {}m",q.area,q.diagonale);
+    //inizializzazione di un secondo quadrato conoscendo la sua area
+    let mut q2 = Quadrato::new(0.0, 0.0, 1.0);
+    //calcolo del lato
+    q2.calcola_lato_da_area();
+    //calcolo della diagonale
+    q2.calcola_diagonale();
+    //stampa dei risultati
+    println!("lato: {} diagonale: {}",q2.lato,q2.diagonale);
+}
+```
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
