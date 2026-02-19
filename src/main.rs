@@ -19,12 +19,14 @@ fn leggi_64(messaggio: &str) -> f64{
     }
 }
 fn main() {
+    //inizializzazione del primo vettore 2D
     let vet1: Vettore = Vettore::new(1.0, 0.0);
+    //inizializzazione del secondo vettore 2D
     let vet2: Vettore = Vettore::new(0.0, 1.0);
+    //calcolo del prodotto vettoriale tra i due vettori e creazione del vettore 3D
     let vet3: Vettore3D = vet1.prodotto_vettoriale_tra_vettori(&vet2);
-    println!("{} {} {}",vet3.x,vet3.y,vet3.z);
-    
-    
+    //stampa delle componenti del vettore 3D
+    println!("{} {} {}",vet3.x,vet3.y,vet3.z); 
 }
 
 
