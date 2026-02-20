@@ -62,7 +62,39 @@ pub struct Vettore3D {
 }
 //funzioni relative al vettore 3D
 impl Vettore3D {
-    pub fn new(&self,x: f64,y: f64,z: f64) -> Vettore3D{
+    pub fn new(x: f64,y: f64,z: f64) -> Vettore3D{
         Self { x, y, z }
     }
+    //funzione per calcolare il modulo del vettore 3D
+    pub fn calcola_modulo(&self) -> f64{
+        (self.x*self.x+self.y*self.y+self.z*self.z).sqrt()
+    }
+    //funzione per calcolare il versore del vettore 3D
+    pub fn calcola_versore(&self) -> Option<Vettore3D>{
+        let m = self.calcola_modulo();
+        if m != 0.0{
+            let x = self.x / m;
+            let y = self.y / m;
+            let z = self.z / m;
+            let vec = Vettore3D::new(x, y, z);
+            Some(vec)
+        }else{
+            None
+        }
+    }
+    //funzione per il calcolo della somma di due vettori
+    pub fn somma_vettori_3D(&self, vec: Vettore3D) -> Vettore3D{
+        Vettore3D::new(self.x+vec.x, self.y+vec.y, self.z+vec.z)
+    }
+
+}
+//funzione che permette di descrivere un vettore 3d partendo dal modulo e i suoi angoli con gli assi cartesiani calcolando le sue componenti
+//alfa indica l'angolo con l'asse delle x
+//beta indica l'angolo con l'asse delle y
+//gamma indica l'angolo con l'asse delle z
+pub fn calcolo_componenti_vettore3D(modulo: f64,alfa: f64,beta: f64,gamma: f64) -> Vettore3D{
+    let vx = modulo * alfa.cos();
+    let vy = modulo * beta.cos();
+    let vz = modulo * gamma.cos();
+    Vettore3D::new(vx,vy,vz)
 }
