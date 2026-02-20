@@ -165,7 +165,7 @@ pub struct Matrice{
 }
 //funzioni legate alla matrice
 impl Matrice{
-    pub fn new( righe: usize, colonne: usize, data: Vec<Vec<f64>>) -> Option<Self>{
+    pub fn new( righe: usize, colonne: usize, data: Vec<Vec<f64>>) -> Result<Self, String>{
         if data.len() == righe {
             let mut count = 0;
             for i in 0..righe {
@@ -176,14 +176,79 @@ impl Matrice{
                 }
             }
             if count == righe {
-                Some(Self { righe, colonne, data })
+                Ok(Self { righe, colonne, data })
             }else{
-                None
+                Err("errore".to_string())
             }
         }else{
-            None
+            Err("errore".to_string())
         }
         
+    }
+    //funzione per il calcolo del determinante di una matrice
+    pub fn calcola_determinante(&self) -> Result<f64, String>{
+        if self.righe == self.colonne{
+            match self.righe {
+                0 => Err("matrice vuota".to_string()),
+                1 => Ok(self.data[0][0]),
+                2 => Ok(self.data[0][0]*self.data[1][1]-self.data[0][1]*self.data[1][0]),
+                3 => Ok(self.data[0][0]*self.data[1][1]*self.data[2][2]+
+                    self.data[0][1]*self.data[1][2]*self.data[2][0]+
+                    self.data[0][2]*self.data[1][0]*self.data[2][1]-
+                    self.data[0][2]*self.data[1][1]*self.data[2][0]-
+                    self.data[0][0]*self.data[1][2]*self.data[2][1]-
+                    self.data[0][1]*self.data[1][0]*self.data[2][2]),
+                _ => self.determinante_gauss()
+            }
+        }else{
+            Err("matrice non quadrata".to_string())
+        }
+    }
+        //funzione da capire meglio la sua logica commentandola
+        fn determinante_gauss(&self) -> Result<f64, String> {
+        let n = self.righe;
+        let mut a = self.data.clone();
+        let mut det = 1.0;
+        let mut scambi = 0;
+        let epsilon = 1e-10;
+        
+        for i in 0..n {
+            // Pivoting parziale
+            let mut pivot = i;
+            let mut max_val = a[i][i].abs();
+            
+            for k in i+1..n {
+                if a[k][i].abs() > max_val {
+                    max_val = a[k][i].abs();
+                    pivot = k;
+                }
+            }
+            
+            if max_val < epsilon {
+                return Ok(0.0);  // Matrice singolare
+            }
+            
+            if pivot != i {
+                a.swap(i, pivot);
+                scambi += 1;
+            }
+            
+            det *= a[i][i];
+            
+            // Eliminazione
+            for k in i+1..n {
+                let fattore = a[k][i] / a[i][i];
+                for j in i+1..n {
+                    a[k][j] -= fattore * a[i][j];
+                }
+            }
+        }
+        
+        if scambi % 2 == 1 {
+            det = -det;
+        }
+        
+        Ok(det)
     }
 }
 
