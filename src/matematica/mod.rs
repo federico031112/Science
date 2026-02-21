@@ -216,26 +216,26 @@ impl Matrice{
             // Pivoting parziale
             let mut pivot = i;
             let mut max_val = a[i][i].abs();
-            
+            //calcolo il valore massimo della diagonale della matrice e se necessario scambio i valori
             for k in i+1..n {
                 if a[k][i].abs() > max_val {
                     max_val = a[k][i].abs();
                     pivot = k;
                 }
             }
-            
+            //controllo che il valore non sia prossimo allo zero, in tal caso ritorno una matrice singolare
             if max_val < epsilon {
                 return Ok(0.0);  // Matrice singolare
             }
-            
+            //verifico se ho effettuato degli scambi tra i valori
             if pivot != i {
                 a.swap(i, pivot);
                 scambi += 1;
             }
-            
+            //calcolo il determinante
             det *= a[i][i];
             
-            // Eliminazione
+            // Eliminazione dei valori sottostanti alla diagonale
             for k in i+1..n {
                 let fattore = a[k][i] / a[i][i];
                 for j in i+1..n {
@@ -243,11 +243,11 @@ impl Matrice{
                 }
             }
         }
-        
+        //se il numero degli scambi è dispari cambio il segno del determinante
         if scambi % 2 == 1 {
             det = -det;
         }
-        
+        //ritorno il determinante
         Ok(det)
     }
 }

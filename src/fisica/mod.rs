@@ -70,16 +70,16 @@ impl Vettore3D {
         (self.x*self.x+self.y*self.y+self.z*self.z).sqrt()
     }
     //funzione per calcolare il versore del vettore 3D
-    pub fn calcola_versore(&self) -> Option<Vettore3D>{
+    pub fn calcola_versore(&self) -> Result<Vettore3D, String>{
         let m = self.calcola_modulo();
         if m != 0.0{
             let x = self.x / m;
             let y = self.y / m;
             let z = self.z / m;
             let vec = Vettore3D::new(x, y, z);
-            Some(vec)
+            Ok(vec)
         }else{
-            None
+            Err("errore".to_string())
         }
     }
     //funzione per il calcolo della somma di due vettori

@@ -2,12 +2,13 @@
 pub struct Quadrato{
     pub lato: f64,
     pub diagonale: f64,
-    pub area: f64
+    pub area: f64,
+    pub perimetro: f64
 }
 //definizione dei metodi relativi alla struct quadrato
 impl Quadrato{
-    pub fn new(l: f64,d: f64,a: f64) -> Self{
-        Self {lato: l, diagonale: d, area: a}
+    pub fn new(l: f64,d: f64,a: f64, p: f64) -> Self{
+        Self {lato: l, diagonale: d, area: a, perimetro: p}
     }
 
     pub fn calcola_area(&mut self){
@@ -20,6 +21,10 @@ impl Quadrato{
 
     pub fn calcola_lato_da_area(&mut self){
         self.lato = self.area.sqrt();
+    }
+
+    pub fn calcola_perimetro(&mut self){
+        self.perimetro = self.lato * 4.0;
     }
 }
 //definizione della struct rettangolo
