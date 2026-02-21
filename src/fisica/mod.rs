@@ -87,6 +87,21 @@ impl Vettore3D {
         Vettore3D::new(self.x+vec.x, self.y+vec.y, self.z+vec.z)
     }
 
+    pub fn prodotto_scalare_vettore3D(&self, n: f64) -> Vettore3D{
+        Vettore3D::new(self.x*n, self.y*n, self.z*n)
+    }
+
+    pub fn prodotto_scalare_tra_vettori3D(&self, vec: Vettore3D) -> Vettore3D{
+        Vettore3D::new(self.x*vec.x, self.y*vec.y, self.z*vec.z)
+    }
+
+    pub fn prodotto_vettoriale_tra_vettori3D(&self, vec: Vettore3D) -> Vettore3D{
+        let compx = self.y*vec.z - self.z*vec.y;
+        let compy = self.z*vec.x - self.x*vec.z;
+        let compz = self.x*vec.y - self.y*vec.z;
+        Vettore3D::new(compx, compy, compz)
+    }
+
 }
 //funzione che permette di descrivere un vettore 3d partendo dal modulo e i suoi angoli con gli assi cartesiani calcolando le sue componenti
 //alfa indica l'angolo con l'asse delle x
