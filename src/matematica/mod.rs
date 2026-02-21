@@ -89,8 +89,13 @@ impl Potenza{
         derivata
     }
 
-    pub fn calcola(&self,base: f64) -> f64{
-        base.powf(self.esponente) * self.coefficiente
+    pub fn calcola(&self,base: f64) -> Result<f64, String>{
+        if base > 0.0 {
+            Ok(base.powf(self.esponente) * self.coefficiente)
+        }else{
+            Err("base negativa".to_string())
+            //introdurre la gestione della base negativa tramite l'impiego dei numeri complessi
+        }
     }
 }
 
