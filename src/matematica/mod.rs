@@ -1,4 +1,4 @@
-
+use num::complex::Complex;
 
 pub fn equazione_primo_grado(a: f64, b: f64) -> f64{
     let x: f64 = (-b)/a;
@@ -68,6 +68,11 @@ fn trasforma_in_apice(num: f64) -> String{
         }
     }).collect()
 }
+
+pub enum Numero{
+    Reale(f64),
+    Complesso(Complex<f64>)
+}
 //definizione della struct potenza e della sua implementazione
 pub struct Potenza{
     esponente: f64,
@@ -89,12 +94,13 @@ impl Potenza{
         derivata
     }
 
-    pub fn calcola(&self,base: f64) -> Result<f64, String>{
+    pub fn calcola(&self,base: f64) -> Numero{
         if base > 0.0 {
-            Ok(base.powf(self.esponente) * self.coefficiente)
+            Numero::Reale(base.powf(self.esponente) * self.coefficiente)
         }else{
-            Err("base negativa".to_string())
-            //introdurre la gestione della base negativa tramite l'impiego dei numeri complessi
+            //in caso di base negativa entra in gioco il calcolo tramite numeri complessi
+            let base_complessa = Complex::new(base, 0.0);
+            Numero::Complesso(base_complessa.powf(self.esponente))
         }
     }
 }
