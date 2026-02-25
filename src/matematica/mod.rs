@@ -1,4 +1,4 @@
-use num::complex::Complex;
+use num::{Float, complex::Complex};
 
 pub fn equazione_primo_grado(a: f64, b: f64) -> f64{
     let x: f64 = (-b)/a;
@@ -260,6 +260,37 @@ impl Matrice{
         }
         //ritorno il determinante
         Ok(det)
+    }
+}
+
+pub struct Esponenziale{
+    base: f64,
+    coefficiente: f64,
+    argomento: String
+}
+
+impl Esponenziale{
+
+    pub fn new(b: f64, coeff: f64, arg: String) -> Self{
+        Self { base: b, coefficiente: coeff, argomento: arg.to_string()}
+    }
+
+    pub fn calcola(&self, esponente: f64) -> Numero{
+        if self.base >= 0.0{
+            Numero::Reale((self.coefficiente)*(self.base.powf(esponente)))
+        }else{
+            let base_complessa = Complex::new(self.base, 0.0);
+            Numero::Complesso(self.coefficiente*(base_complessa.powf(esponente)))
+        }
+    }
+
+    pub fn derivata(&self,derivata_esponenziale: String) -> String {
+        if self.base >= 0.0{
+            format!("{}*{}^{}*{}*{}",self.coefficiente,self.base,self.argomento,self.base.ln(),derivata_esponenziale)
+        }else{
+            let base = Complex::new(self.base, 0.0);
+            format!("{}*{}^{}*{}*{}",self.coefficiente,self.base,self.argomento,base.ln(),derivata_esponenziale)
+        }
     }
 }
 
