@@ -113,3 +113,8 @@ pub fn calcolo_componenti_vettore3D(modulo: f64,alfa: f64,beta: f64,gamma: f64) 
     let vz = modulo * gamma.cos();
     Vettore3D::new(vx,vy,vz)
 }
+
+
+pub fn pressione_media(forza: f64, superficie: f64) -> f64{
+    forza/superficie
+}
