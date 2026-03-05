@@ -118,3 +118,12 @@ pub fn calcolo_componenti_vettore3D(modulo: f64,alfa: f64,beta: f64,gamma: f64) 
 pub fn pressione_media(forza: f64, superficie: f64) -> f64{
     forza/superficie
 }
+
+pub fn densità_media(massa: f64, volume: f64) -> f64{
+    massa/volume
+}
+//la temperatura deve essere misurata in kelvin
+pub fn energia_cinetica_media_particelle(temperatura: f64) -> f64{
+    let costanteboltzman: f64 = 1.380649e-23;
+    3.0/2.0*costanteboltzman*temperatura
+}

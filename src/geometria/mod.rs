@@ -29,8 +29,39 @@ impl Quadrato{
 }
 //definizione della struct rettangolo
 pub struct Rettangolo{
-    lato1: Option<f64>,
-    lato2: Option<f64>,
-    diagonale: Option<f64>,
-    area: Option<f64>
+    lato1: f64,
+    lato2: f64,
+    diagonale: f64,
+    area: f64,
+    perimetro: f64
+}
+
+impl Rettangolo{
+    pub fn new(l1: f64, l2: f64, d: f64, a: f64, p: f64) -> Self{
+        Self { lato1: l1, lato2: l2, diagonale: d, area: a, perimetro: p }
+    }
+
+    pub fn calcola_area(&mut self){
+        self.area = self.lato1*self.lato2;
+    }
+
+    pub fn calcola_diagonale(&mut self){
+        self.diagonale = (self.lato1*self.lato1 + self.lato2*self.lato2).sqrt();
+    }
+
+    pub fn calcola_perimetro(&mut self){
+        self.perimetro = self.lato1*2.0 + self.lato2*2.0;
+    }
+}
+
+pub struct Cerchio{
+    raggio: f64,
+    perimetro: f64,
+    area: f64
+}
+
+impl Cerchio{
+    pub fn new(r: f64, p: f64, a: f64) -> Self{
+        Self {raggio: r, perimetro: p, area: a}
+    }
 }
