@@ -64,4 +64,33 @@ impl Cerchio{
     pub fn new(r: f64, p: f64, a: f64) -> Self{
         Self {raggio: r, perimetro: p, area: a}
     }
+
+    pub fn calcola_area(&mut self){
+        self.area = self.raggio*self.raggio*3.14;
+
+    }
+
+    pub fn calcola_perimetro(&mut self){
+        self.perimetro = 2.0*3.14*self.raggio;
+    }
 }
+
+//consiglio per la gestione di un triangolo i dati possono essere complessi da gestire, meglio avere a fianco un disegno che rappresenti il triangolo
+pub struct Triangolo{
+    l1: f64,
+    l2: f64,
+    l3: f64,
+    alfa: f64,
+    beta: f64,
+    gamma: f64
+}
+
+impl Triangolo{
+    pub fn new(lato1: f64, lato2: f64, lato3: f64) -> Self {
+        Self { l1: lato1, l2: lato2, l3: lato3, alfa: 0.0, beta: 0.0, gamma: 0.0 }
+    }
+
+    
+}
+
+
