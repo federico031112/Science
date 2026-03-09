@@ -76,6 +76,11 @@ impl Cerchio{
 }
 
 //consiglio per la gestione di un triangolo i dati possono essere complessi da gestire, meglio avere a fianco un disegno che rappresenti il triangolo
+/*per risolvere un triangolo qualsiasi bisogna essere a conoscenza di:
+    1. due angoli e un lato
+    2. tre lati
+    3. due lati e l'angolo compreso
+    4. due lati e l'angolo opposto ad uno di essi */
 pub struct Triangolo{
     l1: f64,
     l2: f64,
@@ -86,11 +91,19 @@ pub struct Triangolo{
 }
 
 impl Triangolo{
-    pub fn new(lato1: f64, lato2: f64, lato3: f64) -> Self {
-        Self { l1: lato1, l2: lato2, l3: lato3, alfa: 0.0, beta: 0.0, gamma: 0.0 }
+    pub fn new(lato1: f64, lato2: f64, lato3: f64,a: f64, b: f64, c:f64) -> Self {
+        Self { l1: lato1, l2: lato2, l3: lato3, alfa: a, beta: b, gamma: c }
     }
 
     
+}
+
+pub fn teorema_del_coseno(l1: f64, l2: f64, alfa: f64) -> f64 {
+    l1.powf(2.0)+l2.powf(2.0) - 2.0*l1*l2*alfa.cos()
+}
+
+pub fn teorema_dei_seni(l1: f64, l2: f64, alfa: f64) -> f64 {
+    (alfa.sin()*l2/l1).asin()
 }
 
 
