@@ -87,23 +87,89 @@ pub struct Triangolo{
     l3: f64,
     alfa: f64,
     beta: f64,
-    gamma: f64
+    gamma: f64,
+    perimetro: f64,
+    area: f64
 }
 
 impl Triangolo{
-    pub fn new(lato1: f64, lato2: f64, lato3: f64,a: f64, b: f64, c:f64) -> Self {
-        Self { l1: lato1, l2: lato2, l3: lato3, alfa: a, beta: b, gamma: c }
+    pub fn new(lato1: f64, lato2: f64, lato3: f64,a: f64, b: f64, c:f64, per: f64, area: f64) -> Self {
+        Self { l1: lato1, l2: lato2, l3: lato3, alfa: a, beta: b, gamma: c, perimetro: per, area: area }
     }
+
+    pub fn set_l1(&mut self, la1: f64){
+        self.l1 = la1;
+    }
+
+    pub fn set_l2(&mut self, l2: f64){
+        self.l2 = l2;
+    }
+
+    pub fn set_l3(&mut self, l3: f64){
+        self.l3 = l3;
+    }
+
+    pub fn set_alfa(&mut self, a: f64){
+        self.alfa = a;
+    }
+
+    pub fn set_beta(&mut self, b: f64){
+        self.beta = b;
+    }
+
+    pub fn set_gamma(&mut self, g: f64){
+        self.gamma = g;
+    }
+
+    pub fn calcola_perimetro(&mut self) {
+        self.perimetro = self.l1 + self.l2 + self.l3;
+    }
+
+    pub fn calcola_area(&mut self) {
+        self.area = 0.5 * self.l1 * self.l2 * self.alfa.cos();
+    }
+
 
     
 }
 
+
+//da vedere le formule goniometriche per risolvere un triangolo qualsiasi
 pub fn teorema_del_coseno(l1: f64, l2: f64, alfa: f64) -> f64 {
-    l1.powf(2.0)+l2.powf(2.0) - 2.0*l1*l2*alfa.cos()
+    (l1.powf(2.0)+l2.powf(2.0) - 2.0*l1*l2*alfa.cos()).sqrt()
 }
 
 pub fn teorema_dei_seni(l1: f64, l2: f64, alfa: f64) -> f64 {
     (alfa.sin()*l2/l1).asin()
+}
+
+pub enum Forma2D {
+    Rettangolo(&Rettangolo),
+    Quadrato(&Quadrato),
+    Triangolo(&Triangolo),
+    Cerchio(&Cerchio)
+}
+
+pub struct Prisma {
+    base: Forma2D,
+    altezza: f64,
+    volume: f64
+}
+
+impl Prisma {
+    fn new(base: Forma2D, altezza: f64, volume: f64) -> Self{
+        Self { base, altezza, volume }
+    }
+
+    fn calcola_area(&mut self) {
+        match self.base{
+            Forma2D::Rettangolo(r) => self.volume = r.area * self.altezza,
+            Forma2D::Quadrato(q) => self.volume = q.area * self.altezza,
+            Forma2D::Triangolo(t) => self.volume = t.area * self.altezza,
+            Forma2D::Cerchio(c) => self.volume = c.area * self.altezza,
+            _ => self.volume = 0.0
+        }
+    }
 }
 
 
