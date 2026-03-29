@@ -143,11 +143,13 @@ pub fn teorema_dei_seni(l1: f64, l2: f64, alfa: f64) -> f64 {
     (alfa.sin()*l2/l1).asin()
 }
 
+
+//aggiornamento forma 2D da sistemare
 pub enum Forma2D {
-    Rettangolo(&Rettangolo),
-    Quadrato(&Quadrato),
-    Triangolo(&Triangolo),
-    Cerchio(&Cerchio)
+    Rettangolo(Rettangolo),
+    Quadrato(Quadrato),
+    Triangolo(Triangolo),
+    Cerchio(Cerchio)
 }
 
 pub struct Prisma {
@@ -161,7 +163,7 @@ impl Prisma {
         Self { base, altezza, volume }
     }
 
-    fn calcola_area(&mut self) {
+    fn calcola_area(mut self) {
         match self.base{
             Forma2D::Rettangolo(r) => self.volume = r.area * self.altezza,
             Forma2D::Quadrato(q) => self.volume = q.area * self.altezza,
