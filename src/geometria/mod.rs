@@ -1,4 +1,9 @@
+
+
+
 //definizione della strcut quadrato
+
+
 pub struct Quadrato{
     pub lato: f64,
     pub diagonale: f64,
@@ -163,8 +168,8 @@ impl Prisma {
         Self { base, altezza, volume }
     }
 
-    fn calcola_area(mut self) {
-        match self.base{
+    fn calcola_volume(&mut self) {
+        match &self.base{
             Forma2D::Rettangolo(r) => self.volume = r.area * self.altezza,
             Forma2D::Quadrato(q) => self.volume = q.area * self.altezza,
             Forma2D::Triangolo(t) => self.volume = t.area * self.altezza,
